@@ -1,0 +1,52 @@
+# terminal bell
+set bell-style none
+
+# show completion matches immediately
+set show-all-if-ambiguous on
+
+# show completion matches only if there is no partial completion
+set show-all-if-unmodified on
+
+# do not insert the completion text if it is already present
+set skip-completed-text on
+
+# vi editing mode
+set editing-mode vi
+
+# show which mode is active normal/insert
+set show-mode-in-prompt off
+
+# vi mode changed script
+set vi-mode-changed-bin /home/moshensky/.inputrc_vi_mode_changed
+
+# insert mode key bindings
+set keymap vi-insert
+
+"\C-l": clear-screen
+"\C-p": history-search-backward
+"\C-n": history-search-forward
+"\C-o": menu-complete
+"\C-k": menu-complete-backward
+
+$if bash
+    "\C-x\C-x": "\C-[0isudo \C-[0"
+    "\C-x\C-s": "\C-[ddiscreen\n"
+    "\C-x\C-t": "\C-[dditmux new -s ''\C-[i"
+$endif
+
+# command mode key bindings
+set keymap vi-command
+
+"\C-p": history-search-backward
+"\C-n": history-search-forward
+
+# effectively before 'accept-line' switch to 'insert' mode
+# this can be helpfull in case of vi mode visualization
+"\n": "i\n"
+"\r": "i\r"
+
+$if bash
+    "\C-x\C-x": "0isudo \C-[0"
+    "\C-x\C-s": "ddiscreen\n"
+    "\C-x\C-t": "dditmux new -s ''\C-[i"
+$endif
